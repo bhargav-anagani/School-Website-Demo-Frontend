@@ -1,0 +1,243 @@
+﻿
+> frontend@0.1.0 build
+> next build
+
+node.exe : ΓÜá Warning: 
+Next.js inferred your 
+workspace root, but it 
+may not be correct.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo      
+        : NotSpecified  
+  : (ΓÜá Warning: Ne.   
+ ..not be correct.:S    
+tring) [], RemoteEx    
+ception
+    + FullyQualifiedErr 
+   orId : NativeComman  
+  dError
+ 
+ We detected multiple 
+lockfiles and selected 
+the directory of C:\User
+s\bharg\package-lock.jso
+n as the root directory.
+ To silence this 
+warning, set 
+`turbopack.root` in 
+your Next.js config, or 
+consider removing one 
+of the lockfiles if 
+it's not needed.
+   See https://nextjs.or
+g/docs/app/api-reference
+/config/next-config-js/t
+urbopack#root-directory 
+for more information.
+ Detected additional 
+lockfiles: 
+   * C:\Users\bharg\Down
+loads\Projects\School 
+Website Demo\frontend\pa
+ckage-lock.json
+
+Γû▓ Next.js 16.2.3 (Turbopack)
+- Environments: .env.local
+
+ΓÜá The "middleware" 
+file convention is 
+deprecated. Please use 
+"proxy" instead. Learn 
+more: https://nextjs.org
+/docs/messages/middlewar
+e-to-proxy
+  Creating an optimized production build ...
+Error: Cannot apply 
+unknown utility class 
+`bg-white`. Are you 
+using CSS modules or 
+similar and missing 
+`@reference`? https://ta
+ilwindcss.com/docs/funct
+ions-and-directives#refe
+rence-directive
+    [2m[at 
+onInvalidCandidate (C:\U
+sers\bharg\Downloads\Pro
+jects\School Website Dem
+o\frontend\node_modules\
+tailwindcss\dist\lib.js:
+21:1314)][0m
+    [2m[at Ee (C:\Users
+\bharg\Downloads\Project
+s\School Website Demo\fr
+ontend\node_modules\tail
+windcss\dist\lib.js:16:3
+7066)][0m
+    [2m[at C:\Users\bha
+rg\Downloads\Projects\Sc
+hool Website Demo\fronte
+nd\node_modules\tailwind
+css\dist\lib.js:21:355]
+[0m
+    [2m[at _r (C:\Users
+\bharg\Downloads\Project
+s\School Website Demo\fr
+ontend\node_modules\tail
+windcss\dist\lib.js:3:17
+33)][0m
+    [2m[at I (C:\Users\
+bharg\Downloads\Projects
+\School Website Demo\fro
+ntend\node_modules\tailw
+indcss\dist\lib.js:3:137
+7)][0m
+    [2m[at Te (C:\Users
+\bharg\Downloads\Project
+s\School Website Demo\fr
+ontend\node_modules\tail
+windcss\dist\lib.js:21:1
+72)][0m
+    [2m[at mn (C:\Users
+\bharg\Downloads\Project
+s\School Website Demo\fr
+ontend\node_modules\tail
+windcss\dist\lib.js:38:2
+94)][0m
+    [2m[at process.proc
+essTicksAndRejections (n
+ode:internal/process/tas
+k_queues:105:5)][0m
+    [2m[at async gn (C:
+\Users\bharg\Downloads\P
+rojects\School Website D
+emo\frontend\node_module
+s\tailwindcss\dist\lib.j
+s:38:631)][0m
+    [2m[at async Xr (C:
+\Users\bharg\Downloads\P
+rojects\School Website D
+emo\frontend\node_module
+s\@tailwindcss\node\dist
+\index.js:10:3416)][0m
+
+> Build error occurred
+Error: Turbopack build 
+failed with 1 errors:
+./Downloads/Projects/Sch
+ool Website Demo/fronten
+d/app/globals.css
+Error evaluating 
+Node.js code
+CssSyntaxError: 
+tailwindcss: C:\Users\bh
+arg\Downloads\Projects\S
+chool Website Demo\front
+end\app\globals.css:1:1:
+ Cannot apply unknown 
+utility class 
+`bg-white`. Are you 
+using CSS modules or 
+similar and missing 
+`@reference`? https://ta
+ilwindcss.com/docs/funct
+ions-and-directives#refe
+rence-directive
+    at Input.error (Down
+loads/Projects/School 
+Website Demo/frontend/no
+de_modules/postcss/lib/i
+nput.js:135:16) [C:\User
+s\bharg\Downloads\Projec
+ts\School Website Demo\f
+rontend\.next\build\chun
+ks\08x-_0kja~jv._.js:465
+2:22]
+    at error (Downloads/
+Projects/School Website 
+Demo/frontend/node_modul
+es/postcss/lib/node.js:1
+46:32) [C:\Users\bharg\D
+ownloads\Projects\School
+ Website Demo\frontend\.
+next\build\chunks\08x-_0
+kja~jv._.js:928:38]
+    [at Object.Once (C:\
+Users\bharg\Downloads\Pr
+ojects\School Website De
+mo\frontend\node_modules
+\@tailwindcss\postcss\di
+st\index.js:10:6913)]
+    [at process.processT
+icksAndRejections (node:
+internal/process/task_qu
+eues:105:5)]
+    at async 
+LazyResult.runAsync (Dow
+nloads/Projects/School 
+Website Demo/frontend/no
+de_modules/postcss/lib/l
+azy-result.js:293:11) [C
+:\Users\bharg\Downloads\
+Projects\School Website 
+Demo\frontend\.next\buil
+d\chunks\08x-_0kja~jv._.
+js:6215:21]
+    at async transform (
+turbopack:///[turbopack-
+node]/transforms/postcss
+.ts:70:34) [C:\Users\bha
+rg\Downloads\Projects\Sc
+hool Website Demo\fronte
+nd\.next\build\chunks\[r
+oot-of-the-server]__0sxs
+jo1._.js:146:36]
+    at async run (turbop
+ack:///[turbopack-node]/
+child_process/evaluate.t
+s:89:23) [C:\Users\bharg
+\Downloads\Projects\Scho
+ol Website Demo\frontend
+\.next\build\chunks\[roo
+t-of-the-server]__0wiya7
+t._.js:443:31]
+
+Import trace:
+  Client Component 
+Browser:
+    ./Downloads/Projects
+/School Website Demo/fro
+ntend/app/globals.css 
+[Client Component 
+Browser]
+    ./Downloads/Projects
+/School Website Demo/fro
+ntend/app/layout.tsx 
+[Server Component]
+
+
+    at async transform (
+turbopack:///[turbopack-
+node]/transforms/postcss
+.ts:70:34) [C:\Users\bha
+rg\Downloads\Projects\Sc
+hool Website Demo\fronte
+nd\.next\build\chunks\[r
+oot-of-the-server]__0sxs
+jo1._.js:146:36])
+    at async run (turbop
+ack:///[turbopack-node]/
+child_process/evaluate.t
+s:89:23) [C:\Users\bharg
+\Downloads\Projects\Scho
+ol Website Demo\frontend
+\.next\build\chunks\[roo
+t-of-the-server]__0wiya7
+t._.js:443:31])
