@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://13.60.196.132:5000/api',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'https://school-website-demo-backend.onrender.com/api',
   withCredentials: true, // Important for cookies (JWT)
 });
 
