@@ -17,7 +17,6 @@ type AuthContextType = {
   loading: boolean;
   login: (username: string, password: string, role: string) => Promise<void>;
   logout: () => Promise<void>;
-  logout: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
