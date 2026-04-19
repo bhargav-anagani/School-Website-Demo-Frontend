@@ -12,12 +12,8 @@ export function middleware(req: NextRequest) {
   const isProtected = PROTECTED.some(p => pathname.startsWith(p));
   const isAuthRoute = AUTH_ONLY.some(p => pathname.startsWith(p));
 
-  if (isProtected && !token) {
-    const loginUrl = new URL('/login', req.url);
-    loginUrl.searchParams.set('redirect', pathname);
-    return NextResponse.redirect(loginUrl);
-  }
-
+  // Cross-domain cookie check is not possible in Middleware (Vercel server cannot see Render cookies)
+  // We will rely on client-side AuthContext to handle protection.
   return NextResponse.next();
 }
 
