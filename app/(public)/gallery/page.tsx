@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import api from '@/lib/api';
 import { PhotoIcon } from '@heroicons/react/24/outline';
 
-const CATEGORIES = ['All', 'Events', 'Sports', 'Academics', 'Cultural', 'Infrastructure'];
+const CATEGORIES = ['All', 'Events', 'Sports', 'Academics', 'Campus', 'Cultural', 'Infrastructure'];
 
 // Placeholder images using gradient colors when no real images exist
 const placeholderGallery = [

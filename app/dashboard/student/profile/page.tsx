@@ -147,13 +147,25 @@ function DetailRow({ icon: Icon, label, value }: { icon: any; label: string; val
 // ─────────────────────────────────────────────
 export default function StudentProfilePage() {
   const [profile, setProfile] = useState<any>(null);
+  const [timetable, setTimetable] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get('/student/profile')
-      .then(r => setProfile(r.data.data))
-      .catch(() => toast.error('Failed to load profile.'))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        const [profileRes, timetableRes] = await Promise.all([
+          api.get('/student/profile'),
+          api.get('/student/timetable')
+        ]);
+        setProfile(profileRes.data.data);
+        setTimetable(timetableRes.data.data || []);
+      } catch (err) {
+        toast.error('Failed to load profile data.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, []);
 
   if (loading) return (
@@ -167,9 +179,9 @@ export default function StudentProfilePage() {
   );
 
   const grade      = profile.class?.toString() || '6';
-  const mentor     = MENTORS[grade] || { name: 'N/A', subject: 'N/A' };
+  const mentorName = profile.mentor_name || 'N/A';
+  const mentorSub  = profile.mentor_subject || 'N/A';
   const captain    = CLASS_CAPTAINS[grade] || 'N/A';
-  const timetable  = TIMETABLE[grade] || {};
   const isFemale   = profile.gender === 'female';
   const gradColor  = isFemale
     ? 'from-pink-500 to-purple-600'
@@ -177,6 +189,12 @@ export default function StudentProfilePage() {
 
   const formatDate = (d: string) =>
     d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : '—';
+
+  // Map dynamic timetable to the SCHEDULE view
+  const timetableMap = (timetable || []).reduce((acc: any, curr: any) => {
+    acc[curr.period_name] = { subject: curr.subject, teacher: curr.teacher_name };
+    return acc;
+  }, {});
 
   return (
     <div className="space-y-8 animate-fade-in">
@@ -250,8 +268,8 @@ export default function StudentProfilePage() {
           {/* Mentor */}
           <div className="p-4 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border border-blue-100 dark:border-blue-800/40 mb-4">
             <p className="text-xs text-blue-600 dark:text-blue-400 font-medium mb-1">Class Mentor / Teacher</p>
-            <p className="font-bold text-gray-900 dark:text-white">{mentor.name}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{mentor.subject} Teacher</p>
+            <p className="font-bold text-gray-900 dark:text-white">{mentorName}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{mentorSub} Teacher</p>
           </div>
 
           {/* Captain */}
@@ -276,16 +294,19 @@ export default function StudentProfilePage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-gray-50 dark:bg-slate-800 border-b border-gray-100 dark:border-slate-700">
-                <th className="text-left px-5 py-3 font-semibold text-gray-600 dark:text-gray-400 w-36">Period</th>
-                <th className="text-left px-5 py-3 font-semibold text-gray-600 dark:text-gray-400 w-44">Time</th>
-                <th className="text-left px-5 py-3 font-semibold text-gray-600 dark:text-gray-400">Subject</th>
+                <th className="text-left px-5 py-3 font-semibold text-gray-600 dark:text-gray-400 w-32">Period</th>
+                <th className="text-left px-5 py-3 font-semibold text-gray-600 dark:text-gray-400 w-36">Time</th>
+                <th className="text-left px-5 py-3 font-semibold text-gray-600 dark:text-gray-400 w-44">Subject</th>
+                <th className="text-left px-5 py-3 font-semibold text-gray-600 dark:text-gray-400">Faculty</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50 dark:divide-slate-700/50">
               {SCHEDULE.map((slot) => {
                 const isSpecial = slot.special;
-                const subject = timetable[slot.period];
-                const subjectColor = subject ? SUBJECT_COLORS[subject] : '';
+                const data = timetableMap[slot.period];
+                const subject = data?.subject;
+                const teacher = data?.teacher;
+                const subjectColor = subject ? SUBJECT_COLORS[subject] || 'bg-slate-100 text-slate-700' : '';
 
                 return (
                   <tr
@@ -297,7 +318,7 @@ export default function StudentProfilePage() {
                     }`}
                   >
                     <td className={`px-5 py-3.5 font-medium ${isSpecial ? 'text-gray-500 dark:text-gray-500 italic text-xs' : 'text-gray-900 dark:text-white'}`}>
-                      {slot.period}
+                       {slot.period}
                     </td>
                     <td className="px-5 py-3.5 text-gray-500 dark:text-gray-400 text-xs tabular-nums">
                       {slot.time}
@@ -309,7 +330,23 @@ export default function StudentProfilePage() {
                         </span>
                       ) : isSpecial ? (
                         <span className="text-xs text-gray-400 dark:text-gray-500 italic">—</span>
-                      ) : null}
+                      ) : (
+                         <span className="text-xs text-gray-300 dark:text-gray-600 italic">No Class</span>
+                      )}
+                    </td>
+                    <td className="px-5 py-3.5">
+                       {teacher ? (
+                         <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center text-[10px] font-bold text-primary-600 dark:text-primary-400">
+                               {teacher.charAt(0)}
+                            </div>
+                            <span className="text-xs text-gray-600 dark:text-gray-300 font-medium">
+                              {teacher}
+                            </span>
+                         </div>
+                       ) : !isSpecial ? (
+                         <span className="text-xs text-gray-300 dark:text-gray-600 italic">—</span>
+                       ) : null}
                     </td>
                   </tr>
                 );
@@ -319,7 +356,7 @@ export default function StudentProfilePage() {
         </div>
         <div className="px-5 py-3 border-t border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
           <p className="text-xs text-gray-400 dark:text-gray-500">
-            * Schedule is subject to change. Please refer to school notices for updates.
+            * Schedule is automatically linked to assigned faculty members.
           </p>
         </div>
       </div>

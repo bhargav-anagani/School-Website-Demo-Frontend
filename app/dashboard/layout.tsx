@@ -18,6 +18,7 @@ const NAV_LINKS: Record<string, { href: string; label: string; icon: any }[]> = 
     { href: '/dashboard/student/results',    label: 'Results',    icon: ChartBarIcon },
     { href: '/dashboard/student/attendance', label: 'Attendance', icon: CalendarIcon },
     { href: '/dashboard/student/fees',       label: 'Fees',       icon: BanknotesIcon },
+    { href: '/dashboard/student/materials',  label: 'Materials',  icon: ClipboardDocumentListIcon },
   ],
   teacher: [
     { href: '/dashboard/teacher',              label: 'Dashboard',  icon: HomeIcon },
@@ -25,6 +26,7 @@ const NAV_LINKS: Record<string, { href: string; label: string; icon: any }[]> = 
     { href: '/dashboard/teacher/students',     label: 'Students',   icon: UsersIcon },
     { href: '/dashboard/teacher/attendance',   label: 'Attendance', icon: CalendarIcon },
     { href: '/dashboard/teacher/results',      label: 'Results',    icon: ChartBarIcon },
+    { href: '/dashboard/teacher/materials',    label: 'Materials',  icon: ClipboardDocumentListIcon },
     { href: '/dashboard/teacher/announcements',label: 'Notices',    icon: BellAlertIcon },
   ],
   admin: [
@@ -42,6 +44,7 @@ const NAV_LINKS: Record<string, { href: string; label: string; icon: any }[]> = 
     { href: '/dashboard/parent/results',      label: 'Child Results',    icon: ChartBarIcon },
     { href: '/dashboard/parent/attendance',   label: 'Child Attendance', icon: CalendarIcon },
     { href: '/dashboard/parent/fees',         label: 'Fees & Payment',   icon: BanknotesIcon },
+    { href: '/dashboard/parent/materials',    label: 'Study Materials',  icon: ClipboardDocumentListIcon },
     { href: '/dashboard/parent/announcements',label: 'Notices',          icon: BellAlertIcon },
   ],
 };
